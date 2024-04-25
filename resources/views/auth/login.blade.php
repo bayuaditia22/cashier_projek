@@ -67,7 +67,7 @@
                 <br />
 
                 <div>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 4 template. Privacy and Terms</p>
+                  <p>Selamat Datang Di Aplikasi dan Jangan Lupa Login</p>
                 </div>
               </div>
             </form>

@@ -19,9 +19,19 @@
               </div>
 
               <div class="form-group row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">jumlah</label>
+                <label for="staticEmail" class="col-sm-4 col-form-label">kapasita</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="jumlah" value="" name="jumlah">
+                  <input type="text" class="form-control" id="kapasitas" value="" name="kapasitas">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-4 col-form-label">Status</label>
+                <div class="col-sm-8">
+                  <select class="form-control" name="status" id="status">
+                    <option value="Terbooking">Terbooking</option>
+                    <option value="Free">Free</option>
+                  </select>
                 </div>
               </div>
 

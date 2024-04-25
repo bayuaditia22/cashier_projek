@@ -6,6 +6,12 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use PDOException;
+use App\Imports\CategoryImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Category\Exports;
+use App\Exports\CategoryExport;
+use Illuminate\Http\Request;
+use PDF;
 
 class CategoryController extends Controller
 {
@@ -73,5 +79,27 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect('category')->with('success','Data category berhasil dihapus!');
+    }
+
+    public function exportData(){
+        $date = date('Y-m-d');
+        return Excel::download(new CategoryExport, $date.'_category.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new CategoryImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Produk Category berhasil');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Category::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('category/category-pdf', ['category'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-category.pdf');
     }
 }

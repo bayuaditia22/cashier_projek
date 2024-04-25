@@ -39,6 +39,15 @@
                                         data-target="#modalFormCategory">
                                         Tambah Category
                                     </button>
+                                    <a href="{{ route('export-category')}}" class="btn btn-success">
+                                        <i class="fa fa-file-excel"></i> Export Excel
+                                    </a>
+                                    <a href="{{ route('export-category-pdf')}}" class="btn btn-danger">
+                                        <i class="fa fa-file-pdf"></i> Export PDF
+                                    </a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
+                                        <i class="fas fa-file-excel"></i> Import
+                                    </button>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -80,6 +89,7 @@
         </div>
         @include('category.form')
     </section>
+    @include('category.modal')
 @endsection
 
 @push('script')
@@ -118,6 +128,7 @@
         const mode = btn.data('mode')
         const nama_category = btn.data('nama_category')
         const id = btn.data('id')
+        console.log(nama_category)
         const modal = $(this)
         if(mode === 'edit'){
             modal.find('.modal-title').text('Edit Data')

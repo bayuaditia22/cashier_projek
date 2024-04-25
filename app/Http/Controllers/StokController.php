@@ -12,6 +12,7 @@ use App\Exports\Stok\Exports;
 use App\Exports\StokExport;
 use App\Imports\Import;
 use Illuminate\Http\Request;
+use PDF;
 
 class StokController extends Controller
 {
@@ -99,5 +100,16 @@ class StokController extends Controller
     {
         Excel::import(new StokImport, $request->import);
         return redirect()->back()->with('success', 'Import data Produk Stok berhasil');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Stok::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('stok/stok-pdf', ['stok'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-stok.pdf');
     }
 }

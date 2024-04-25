@@ -35,7 +35,7 @@ class TransaksiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTransaksiRequest $request)
+    public function store(Request $request)
     {
         try {
             DB::beginTransaction();
@@ -66,7 +66,7 @@ class TransaksiController extends Controller
                     'subtotal' => $detail['harga'] * $detail['qty']
                 ]);
             }
-            
+
             DB::commit();
 
             return response()->json(['status' => true, 'message' => 'Pemesanan Berhasil!', 'notrans' => $notrans]);

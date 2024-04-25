@@ -12,6 +12,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Menu\Exports;
 use App\Exports\MenuExport;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
+use PDF;
 
 class MenuController extends Controller
 {
@@ -113,5 +116,27 @@ class MenuController extends Controller
     {
         Excel::import(new MenuImport, $request->import);
         return redirect()->back()->with('success', 'Import data Menu berhasil');
+    }
+
+    public function generatepdf()
+    {
+        // Get data
+        $menu = Menu::all();
+
+        // Loop through menu items and encode images to base64
+        foreach ($menu as $p) {
+            $imagePath = public_path('images/' . $p->image);
+            $imageData = base64_encode(file_get_contents($imagePath));
+            $p->imageData = $imageData;
+        }
+
+        // Generate PDF
+        $dompdf = new Dompdf();
+        $html = View::make('menu.menu-pdf', compact('menu'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        // Return the PDF as a download
+        return $dompdf->stream('menu.pdf');
     }
 }

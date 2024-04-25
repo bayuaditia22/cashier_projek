@@ -6,6 +6,12 @@ use App\Models\Pelanggan;
 use App\Models\Jenis;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
+use App\Imports\PelangganImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Pelanggan\Exports;
+use App\Exports\PelangganExport;
+use Illuminate\Http\Request;
+use PDF;
 
 class PelangganController extends Controller
 {
@@ -76,5 +82,27 @@ class PelangganController extends Controller
     {
         Pelanggan::find($id)->delete();
         return redirect('pelanggan')->with('success','Data Pelanggan berhasil dihapus!');
+    }
+
+    public function exportData(){
+        $date = date('Y-m-d');
+        return Excel::download(new PelangganExport, $date.'_pelanggan.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new PelangganImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Menu berhasil');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Pelanggan::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('pelanggan/pelanggan-pdf', ['pelanggan'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-pelanggan.pdf');
     }
 }

@@ -20,7 +20,7 @@ class UserController extends Controller
                     break;
 
                 case '3';
-                    return redirect()->intended('/category');
+                    return redirect()->intended('/laporan');
                     break;
             }
         }

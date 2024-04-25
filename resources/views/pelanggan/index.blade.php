@@ -39,6 +39,15 @@
                                         data-target="#modalFormPelanggan">
                                         Tambah Pelanggan
                                     </button>
+                                    <a href="{{ route('export-pelanggan')}}" class="btn btn-success">
+                                        <i class="fa fa-file-excel"></i> Export
+                                    </a>
+                                    <a href="{{ route('export-pelanggan-pdf')}}" class="btn btn-danger">
+                                        <i class="fa fa-file-pdf"></i> Export PDF
+                                    </a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
+                                        <i class="fas fa-file-excel"></i> Import
+                                    </button>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -80,6 +89,7 @@
         </div>
         @include('pelanggan.form')
     </section>
+    @include('pelanggan.modal')
 @endsection
 
 @push('script')

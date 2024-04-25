@@ -42,6 +42,9 @@
                                     <a href="{{ route('export-menu')}}" class="btn btn-success">
                                         <i class="fa fa-file-excel"></i> Export
                                     </a>
+                                    <a href="{{ route('export-menu-pdf')}}" class="btn btn-danger">
+                                        <i class="fa fa-file-pdf"></i> Export PDF
+                                    </a>
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
                                         <i class="fas fa-file-excel"></i> Import
                                     </button>

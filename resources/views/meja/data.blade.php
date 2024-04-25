@@ -5,7 +5,8 @@
                 <tr>
                     <th>No</th>
                     <th>No Meja</th>
-                    <th>jumlah</th>
+                    <th>kapasita</th>
+                    <th>status</th>
                     <th>Tools</th>
                 </tr>
             </thead>
@@ -14,10 +15,11 @@
             <tr>
                 <td>{{ $i = !isset ($i) ? ($i = 1) : ++$i }}</td>
                 <td>{{ $p->no_meja }}</td>
-                <td>{{ $p->jumlah }}</td>
+                <td>{{ $p->kapasitas }}</td>
+                <td>{{ $p->status }}</td>
                 <td>
                     <button class="btn text-warning" data-toggle="modal" data-target="#modalFormMeja" data-mode="edit"
-                        data-id="{{ $p->id }}" data-no_meja="{{ $p->no_meja }}" data-jumlah="{{ $p->jumlah }}">
+                        data-id="{{ $p->id }}" data-no_meja="{{ $p->no_meja }}" data-kapasitas="{{ $p->kapasitas }}"  data-status="{{ $p->status }}">
                         <i class="fas fa-edit"></i>
                     </button>
                     <form method="post" action="{{ route('meja.destroy', $p->id) }}" style="display: inline">

@@ -39,6 +39,15 @@
                                         data-target="#modalFormMeja">
                                         Tambah Meja
                                     </button>
+                                    <a href="{{ route('export-meja')}}" class="btn btn-success">
+                                        <i class="fa fa-file-excel"></i> Export
+                                    </a>
+                                    <a href="{{ route('export-meja-pdf')}}" class="btn btn-danger">
+                                        <i class="fa fa-file-pdf"></i> Export PDF
+                                    </a>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
+                                        <i class="fas fa-file-excel"></i> Import
+                                    </button>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -80,6 +89,7 @@
         </div>
         @include('meja.form')
     </section>
+    @include('meja.modal')
 @endsection
 
 @push('script')
@@ -117,19 +127,22 @@
         const btn = $(e.relatedTarget)
         const mode = btn.data('mode')
         const no_meja = btn.data('no_meja')
-        const jumlah = btn.data('jumlah')
+        const kapasitas = btn.data('kapasitas')
+        const status = btn.data('status')
         const id = btn.data('id')
         const modal = $(this)
         if(mode === 'edit'){
             modal.find('.modal-title').text('Edit Data')
             modal.find('#no_meja').val(no_meja)
-            modal.find('#jumlah').val(jumlah)
+            modal.find('#kapasitas').val(kapasitas)
+            modal.find('#status').val(status)
             modal.find('.modal-body form').attr('action','{{ url('meja')}}/' + id)
             modal.find('#method').html('@method("PATCH")')
         }else{
             modal.find('.modal-title').text('Input Data meja')
             modal.find('#no_meja').val('')
-            modal.find('#jumlah').val('')
+            modal.find('#kapasitas').val('')
+            modal.find('#status').val('')
             modal.find('#method').html('')
             modal.find('.modal-body form').attr('action','{{ url('meja') }}')
         }

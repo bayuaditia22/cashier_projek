@@ -13,7 +13,13 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        //
+            try{
+                $data['detail_transaksi'] = DetailTransaksi::get();
+                return view('laporan.index')->with($data);
+            }
+            catch (QueryException | Exception | PDOException $error) {
+                $this->failResponse($error->getMessage(), $error->getCode());
+            }
     }
 
     /**

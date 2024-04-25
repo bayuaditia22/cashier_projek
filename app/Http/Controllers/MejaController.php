@@ -6,6 +6,12 @@ use App\Models\Meja;
 use App\Http\Requests\StoreMejaRequest;
 use App\Http\Requests\UpdateMejaRequest;
 use PDOException;
+use App\Imports\MejaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\Meja\Exports;
+use App\Exports\MejaExport;
+use Illuminate\Http\Request;
+use PDF;
 
 class MejaController extends Controller
 {
@@ -73,6 +79,28 @@ class MejaController extends Controller
     {
         Meja::find($id)->delete();
         return redirect('meja')->with('success','Data meja berhasil dihapus!');
+    }
+
+    public function exportData(){
+        $date = date('Y-m-d');
+        return Excel::download(new MejaExport, $date.'_meja.xlsx');
+    }
+
+    public function importData(Request $request)
+    {
+        Excel::import(new MejaImport, $request->import);
+        return redirect()->back()->with('success', 'Import data Produk Meja berhasil');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Meja::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('meja/meja-pdf', ['meja'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-meja.pdf');
     }
 
 }

@@ -11,6 +11,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Jenis\Exports;
 use App\Exports\JenisExport;
 use Illuminate\Http\Request;
+use PDF;
+
 
 class JenisController extends Controller
 {
@@ -89,5 +91,16 @@ class JenisController extends Controller
     {
         Excel::import(new JenisImport, $request->import);
         return redirect()->back()->with('success', 'Import data Produk Jenis berhasil');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Jenis::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('jenis/jenis-pdf', ['jenis'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-jenis.pdf');
     }
 }

@@ -12,16 +12,16 @@
             @foreach ($category  as $p)
             <tr>
                 <td>{{ $i = !isset ($i) ? ($i = 1) : ++$i }}</td>
-                <td>{{ $p->nama_jenis }}</td>
+                <td>{{ $p->nama_category }}</td>
                 <td>
                     <button class="btn text-warning" data-toggle="modal" data-target="#modalFormCategory" data-mode="edit"
-                        data-id="{{ $p->id }}" data-nama_jenis="{{ $p->nama_jenis }}">
+                        data-id="{{ $p->id }}" data-nama_category="{{ $p->nama_category }}">
                         <i class="fas fa-edit"></i>
                     </button>
                     <form method="post" action="{{ route('category.destroy', $p->id) }}" style="display: inline">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn text-danger delete-data" data-nama="{{ $p->nama_jenis }}">
+                        <button type="button" class="btn text-danger delete-data" data-nama="{{ $p->nama_category }}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>

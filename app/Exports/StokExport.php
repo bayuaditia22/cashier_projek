@@ -32,8 +32,8 @@ class StokExport implements FromCollection, WithHeadings, WithEvents
     {
         return[
             'Id',
-            'No',
-            'Stok',
+            'Menu Id',
+            'Jumlah',
         ];
     }
 
@@ -48,7 +48,7 @@ class StokExport implements FromCollection, WithHeadings, WithEvents
                 $event->sheet->getColumnDimension('E')->setAutoSize(true);
 
                 $event->sheet->insertNewRowBefore(1, 2);
-                $event->sheet->mergeCells('A1:C1');
+                $event->sheet->mergeCells('A1:E1');
                 $event->sheet->setCellValue('A1', 'DATA STOK');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
