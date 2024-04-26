@@ -10,7 +10,14 @@
         <div class="modal-body">
         <form method="post" action="menu" enctype="multipart/form-data">
               @csrf
-
+              <div id="method"></div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-4 col-form-label">Nama Menu</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="nama_menu" value="" name="nama_menu">
+                </div>
+              </div>
+              
               <div class="form-group row">
                 <label for="jenis_id" class="col-sm-4 col-form-label">Jenis ID</label>
                   <div class="col-sm-8">
@@ -23,21 +30,13 @@
                 </div>
               </div>
 
-              <div id="method"></div>
-              <div class="form-group row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">Nama menu</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="nama_menu" value="" name="nama_menu">
-                </div>
-              </div>
 
               <div id="method"></div>
-               <div class="input-group mb-3">
-                <label for="staticEmail" class="col-sm-4 col-form-label">Harga</label>
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Rp.</span>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-4 col-form-label">Harga</label>
+                  <div class="col-sm-8">
+                  <input type="number" class="form-control" id="harga" placeholder="Harga" name="harga">
                 </div>
-                <input type="number" class="form-control" id="harga" placeholder="Harga" name="harga">
               </div>
 
               <div id="method"></div>

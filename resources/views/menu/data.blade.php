@@ -4,8 +4,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Jenis Id</th>
                     <th>Nama Menu</th>
+                    <th>Jenis Id</th>
                     <th>Harga </th>
                     <th>Image </th>
                     <th>Deskripsi </th>
@@ -16,8 +16,8 @@
             @foreach ($menu  as $p)
             <tr>
                 <td>{{ $i = !isset ($i) ? ($i = 1) : ++$i }}</td>
-                <td>{{ $p->jenis->nama_jenis }}</td>
                 <td>{{ $p->nama_menu }}</td>
+                <td>{{ $p->jenis->nama_jenis }}</td>
                 <td>{{ $p->harga }}</td>
                 @if (request()->route()->getActionMethod() == 'generatepdf')
                     <td><img width="70px" src="data:image/jpeg;base64,{{ $p->imageData }}" alt=""></td>

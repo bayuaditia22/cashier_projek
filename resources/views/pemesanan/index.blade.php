@@ -59,23 +59,25 @@
                                         @foreach ($jenis as $j)
                                             <li class="jenis-menu" data-jenis="{{ $j}}">
                                                 <h3>{{ $j->nama_jenis }}</h3>
-                                                <ul class="menu-item" style="cursor: pointer;">
-                                                    @foreach ($j->menu as $menu)
-                                                        <li @if (!isset($menu->stok) || $menu->stok->count() < 1 || $menu->stok->jumlah < 1) style="pointer-events: none; opacity: .8" @endif
-                                                            data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
-                                                            <img width="50" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
-                                                            <div style="font-family: calibri;">
-                                                                Nama: {{ $menu->nama_menu }}<br>
-                                                                @if (isset($menu->stok) && $menu->stok->count() > 0 && $menu->stok->jumlah > 0)
-                                                                    Stok: {{ $menu->stok->jumlah }}<br>
-                                                                @else
-                                                                    Stok tidak tersedia<br>
-                                                                @endif
-                                                                Deskripsi: {{ $menu->deskripsi }}
-                                                            </div>
-                                                        </li>   
-                                                    @endforeach
-                                                </ul>
+                                                <li style="overflow:auto">
+                                                    <ul class="menu-item" class="col-md-8" style="cursor: pointer;">
+                                                        @foreach ($j->menu as $menu)
+                                                            <li @if (!isset($menu->stok) || $menu->stok->count() < 1 || $menu->stok->jumlah < 1) style="pointer-events: none; opacity: .8" @endif
+                                                                data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
+                                                                <img width="50" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
+                                                                <div style="font-family: calibri;">
+                                                                    Nama: {{ $menu->nama_menu }}<br>
+                                                                    @if (isset($menu->stok) && $menu->stok->count() > 0 && $menu->stok->jumlah > 0)
+                                                                        Stok: {{ $menu->stok->jumlah }}<br>
+                                                                    @else
+                                                                        Stok tidak tersedia<br>
+                                                                    @endif
+                                                                    Deskripsi: {{ $menu->deskripsi }}
+                                                                </div>
+                                                            </li>   
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
                                             </li>
                                         @endforeach
                                         </ul>

@@ -57,7 +57,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>B A Y U  M A R T</h2>
+                            <h2>C A F F E</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -70,13 +70,13 @@
                             @if (Auth::user()->level == 1)
                                 <li><a><i class="fa fa-user"></i> ADMIN <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="{{ url('/contact') }}">Concact</a></li>
+                                        <!-- <li><a href="{{ url('/contact') }}">Concact</a></li> -->
                                         <li><a href="{{ url('/jenis') }}">Jenis</a></li>
-                                        <li><a href="{{ url('/meja') }}">Meja</a></li>
-                                        <li><a href="{{ url('/category') }}">Category</a></li>
                                         <li><a href="{{ url('/menu') }}">Menu</a></li>
                                         <li><a href="{{ url('/stok') }}">Stok</a></li>
-                                        <li><a href="{{ url('/absensi') }}">Absensi</a></li>
+                                        <li><a href="{{ url('/meja') }}">Meja</a></li>
+                                        <li><a href="{{ url('/category') }}">Category</a></li>
+                                        <!-- <li><a href="{{ url('/absensi') }}">Absensi</a></li> -->
                                     </ul>
                                 </li>
                             @endif
@@ -85,8 +85,8 @@
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('/pelanggan') }}">Pelanggan</a></li>
                                         <li><a href="{{ url('/pemesanan') }}">Pemesanan</a></li>
-                                        <li><a href="{{ url('/sejarah') }}">sejarah</a></li>
-                                        <li><a href="{{ url('/titipan') }}">produk Titipan</a></li>
+                                        <!-- <li><a href="{{ url('/sejarah') }}">sejarah</a></li> -->
+                                        <!-- <li><a href="{{ url('/titipan') }}">produk Titipan</a></li> -->
                                     </ul>
                                 </li>
                             @endif
