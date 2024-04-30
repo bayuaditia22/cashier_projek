@@ -12,10 +12,7 @@
                     <div class="dashboard_graph">
                         <div class="row x_title">
                             <div class="col-md-6">
-                                <h3>
-                                    PROJECT UJIKOM
-                                    <h3>CHASIER GACORAN</h3>
-                                </h3>
+                                <h1 style=" font-family: 'Caveat', cursive;">BAY Caffe</h1>
                             </div>
                             <div class="col-md-6">
                                 <div id="reportrange" class="pull-right"

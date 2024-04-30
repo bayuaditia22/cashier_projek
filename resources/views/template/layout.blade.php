@@ -36,6 +36,11 @@
     <link href="{{ asset('template') }}/build/css/custom.min.css" rel="stylesheet">
     <link href="{{ asset('bootstrap5') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('template') }}/vendors/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <!-- Custom Font Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    
     @stack('style')
 </head>
 
@@ -45,7 +50,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>B A Y U  M A R T</span></a>
+                        <a class="site_title" style=" font-family: 'Caveat', cursive;"><i class="fa-solid fa-mug-saucer"></i> <span>Bayu  Caffe</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -53,10 +58,10 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="bayu.jpg" class="img-circle profile_img">
+                            <img src="b.png" class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
+                            <span>Welcome To,</span>
                             <h2>C A F F E</h2>
                         </div>
                     </div>
@@ -67,6 +72,14 @@
                         <div class="menu_section">
                             <h3>Bayu Aditia</h3>
                             <ul class="nav side-menu">
+                                <li><a><i class="fa fa-home"></i> HOME <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <!-- <li><a href="{{ url('/dashboard') }}">Dashboard</a></li> -->
+                                        <li><a href="{{ url('/data') }}">Data</a></li>
+                                        <!-- <li><a href="{{ url('/sejarah') }}">Sejarah</a></li>
+                                        <li><a href="{{ url('/contact') }}">Contact</a></li> -->
+                                    </ul>
+                                </li>
                             @if (Auth::user()->level == 1)
                                 <li><a><i class="fa fa-user"></i> ADMIN <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
@@ -74,14 +87,14 @@
                                         <li><a href="{{ url('/jenis') }}">Jenis</a></li>
                                         <li><a href="{{ url('/menu') }}">Menu</a></li>
                                         <li><a href="{{ url('/stok') }}">Stok</a></li>
-                                        <li><a href="{{ url('/meja') }}">Meja</a></li>
-                                        <li><a href="{{ url('/category') }}">Category</a></li>
+                                        <!-- <li><a href="{{ url('/meja') }}">Meja</a></li>
+                                        <li><a href="{{ url('/category') }}">Category</a></li> -->
                                         <!-- <li><a href="{{ url('/absensi') }}">Absensi</a></li> -->
                                     </ul>
                                 </li>
                             @endif
                             @if (Auth::user()->level == 2)
-                                <li><a><i class="fa fa-user"></i> CASHIER <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa-solid fa-cash-register"></i> CASHIER <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('/pelanggan') }}">Pelanggan</a></li>
                                         <li><a href="{{ url('/pemesanan') }}">Pemesanan</a></li>
@@ -91,10 +104,10 @@
                                 </li>
                             @endif
                             @if (Auth::user()->level == 3)
-                                <li><a href="{{ url('/laporan') }}"><i class="fa fa-user"></i> OWNER <span class="fa fa-chevron-down"></span></a>
+                                <li><a href="{{ url('/laporan') }}"><i class="fa-solid fa-database"></i> OWNER <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <!-- <li><a href="{{ url('/category') }}">Category</a></li>
-                                        <li><a href="{{ url('/menu') }}">Menu</a></li> -->
+                                        <!-- <!-- <li><a href="{{ url('/categor') }}">Category</a></li> -->
+                                        <li><a href="{{ url('/laporan') }}">Laporan</a></li>
                                     </ul>
                                 </li>
                             @endif

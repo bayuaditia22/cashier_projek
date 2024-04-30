@@ -12,7 +12,10 @@
                     <div class="dashboard_graph">
                         <div class="row x_title">
                             <div class="col-md-6">
-                                <h1 style=" font-family: 'Caveat', cursive;">BAY Caffe</h1>
+                                <h3>
+                                    PROJECT UJIKOM
+                                    <h3>CHASIER GACORAN</h3>
+                                </h3>
                             </div>
                             <div class="col-md-6">
                                 <div id="reportrange" class="pull-right"
@@ -30,20 +33,11 @@
                         </div>
                         <div class="col-md-12 col-sm-3 bg-white">
                             <div class="x_title">
-                                <h2>Menu</h2>
+                                <h2>Category</h2>
                                 <div class="float-right ml-auto">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#modalFormMenu">
-                                        Tambah Menu
-                                    </button>
-                                    <a href="{{ route('export-menu')}}" class="btn btn-success">
-                                        <i class="fa fa-file-excel"></i> Export
-                                    </a>
-                                    <a href="{{ route('export-menu-pdf')}}" class="btn btn-danger">
-                                        <i class="fa fa-file-pdf"></i> Export PDF
-                                    </a>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
-                                        <i class="fas fa-file-excel"></i> Import
+                                        data-target="#modalFormCategory">
+                                        Tambah Category 
                                     </button>
                                 </div>
                                 <div class="clearfix"></div>
@@ -72,7 +66,7 @@
                                     </div>
                                 @endif
                                 <div class="mt-3">
-                                    @include('menu.data')
+                                    @include('category.data')
                                 </div>
                                 <!-- Button trigger modal -->
                             </div>
@@ -84,14 +78,14 @@
             </div>
             <br />
         </div>
-        @include('menu.form')
+        @include('category.form')
     </section>
-    @include('menu.modal')
+    @include('category.modal')
 @endsection
 
 @push('script')
     <script>
-        $('#tbl-menu').DataTable()
+        $('#tbl-category').DataTable()
 
         $('.alert-success').fadeTo(2000,500).slideUp(500, function(){
              $('.alert-success').slideUp(500)
@@ -120,34 +114,23 @@
         })
     })
 
-    $('#modalFormMenu').on('show.bs.modal', function(e) {
+    $('#modalFormCategory').on('show.bs.modal', function(e) {
         const btn = $(e.relatedTarget)
         const mode = btn.data('mode')
-        const jenis_id = btn.data('jenis_id')
-        const nama_menu = btn.data('nama_menu')
-        const harga = btn.data('harga')
-        const image = btn.data('image')
-        const deskripsi = btn.data('deskripsi')
+        const nama_category = btn.data('nama_category')
         const id = btn.data('id')
+        console.log(nama_category)
         const modal = $(this)
         if(mode === 'edit'){
             modal.find('.modal-title').text('Edit Data')
-            modal.find('#jenis_id').val(jenis_id)
-            modal.find('#nama_menu').val(nama_menu)
-            modal.find('#harga').val(harga)
-            // modal.find('#image').val(image)
-            modal.find('#deskripsi').val(deskripsi)
-            modal.find('.modal-body form').attr('action','{{ url('menu')}}/' + id)
+            modal.find('#nama_category').val(nama_category)
+            modal.find('.modal-body form').attr('action','{{ url('category')}}/' + id)
             modal.find('#method').html('@method("PATCH")')
         }else{
-            modal.find('.modal-title').text('Input Data menu')
-            modal.find('#jenis_id').val('')
-            modal.find('#nama_menu').val('')
-            modal.find('#harga').val('')
-            modal.find('#image').val('')
-            modal.find('#deskripsi').val('')
-            // modal.find('#method').html('')
-            modal.find('.modal-body form').attr('action','{{ url('menu') }}')
+            modal.find('.modal-title').text('Input Data category')
+            modal.find('#nama_category').val('')
+            modal.find('#method').html('')
+            modal.find('.modal-body form').attr('action','{{ url('category') }}')
         }
     })
     </script>

@@ -50,12 +50,12 @@ class TitipanExport implements FromCollection, withHeadings
                 $event->sheet->grtColumnDimension('C')->setAutoSize(true);
 
                 $event->sheet->insertNewRoeBefore(1, 2);
-                $event->sheet->mergeCells('A1, G1');
+                $event->sheet->mergeCells('A1, C1');
                 $event->sheet->setCellValue('A1','Titipan');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->getStyle('A3:G' .$event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A3:C' .$event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => \phpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,

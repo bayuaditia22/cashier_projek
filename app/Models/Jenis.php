@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jenis extends Model
 {
+    use hasFactory;
     protected $table ='jenis';
-    protected $guarded =['id'];
+    protected $guarded =[''];
 
     public function menu()
     {

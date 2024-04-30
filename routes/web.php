@@ -2,6 +2,7 @@
 use App\http\Controllers\HomeController;
 use App\http\Controllers\AbsensiController;
 use App\http\Controllers\CategoryController;
+use App\http\Controllers\DataController;
 use App\http\Controllers\MenuController;
 use App\http\Controllers\MejaController;
 use App\http\Controllers\StokController;
@@ -18,13 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 //login
 Route::get('/login',[UserController::class, 'index']) ->name('login');
+Route::get('/create/akun',[UserController::class, 'index']) ->name('creat/akun');
 Route::post('/login/cek',[UserController::class, 'cekLogin']) ->name('cekLogin');
 Route::get('/logout',[UserController::class, 'logout']) ->name('logout');
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::resource('/home', HomeController::class);
-    Route::resource('/sejarah', HomeController::class);
-    Route::resource('/contact', HomeController::class);
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/data', [DataController::class, 'index'])->name('data');
+    Route::get('/chart', [DataController::class, 'index'])->name('chart.index');
+    Route::get('/sejarah', [HomeController::class, 'index1'])->name('sejarah');
+    Route::get('/contact', [HomeController::class, 'index2'])->name('contact');
 
     Route::group(['middleware'=>['cekUserLogin:1']], function(){
         Route::resource('/absensi', AbsensiController::class);
@@ -80,6 +84,8 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::group(['middleware'=>['cekUserLogin:3']], function(){
         Route::resource('/laporan', DetailTransaksiController::class);
+        Route::get('export/laporan',[DetailTransaksiController::class, 'exportData'])->name('export-laporan');
+        Route::get('export/laporan/pdf', [DetailTransaksiController::class, 'generatepdf'])->name('export-laporan-pdf');
        
     });
 

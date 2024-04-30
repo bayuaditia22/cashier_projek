@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
-use App\Models\Jenis;
 use App\Http\Requests\StorePelangganRequest;
 use App\Http\Requests\UpdatePelangganRequest;
 use App\Imports\PelangganImport;
@@ -22,7 +21,6 @@ class PelangganController extends Controller
     {
         try{
             $data['pelanggan'] = Pelanggan::get();
-            $data['jenis'] = Jenis::get();
             return view('pelanggan.index')->with($data);
         }
         catch (QueryException | Exception | PDOException $error) {

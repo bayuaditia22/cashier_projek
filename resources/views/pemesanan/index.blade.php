@@ -12,10 +12,7 @@
                     <div class="dashboard_graph">
                         <div class="row x_title">
                             <div class="col-md-6">
-                                <h3>
-                                    PROJECT UJIKOM
-                                    <h3>KASIR</h3>
-                                </h3>
+                                <h1 style=" font-family: 'Caveat', cursive;">BAY Caffe</h1>
                             </div>
                             <div class="col-md-6">
                                 <div id="reportrange" class="pull-right"
@@ -57,14 +54,14 @@
                                         <!-- Tabel daftar orderan -->
                                         <ul class="menu-container">
                                         @foreach ($jenis as $j)
-                                            <li class="jenis-menu" data-jenis="{{ $j}}">
+                                            <li class="jenis-menu" style=" font-family: 'Caveat', cursive;" data-jenis="{{ $j}}">
                                                 <h3>{{ $j->nama_jenis }}</h3>
                                                 <li style="overflow:auto">
-                                                    <ul class="menu-item" class="col-md-8" style="cursor: pointer;">
+                                                    <ul class="menu-item" class="col-md-8" style="cursor: pointer; align-items: center;">
                                                         @foreach ($j->menu as $menu)
                                                             <li @if (!isset($menu->stok) || $menu->stok->count() < 1 || $menu->stok->jumlah < 1) style="pointer-events: none; opacity: .8" @endif
                                                                 data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
-                                                                <img width="50" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
+                                                                <img src="{{ asset('images') }}/{{ $menu->image }}" alt="{{ $menu->nama_menu }}" style="width: 50px; justify-content: center;">
                                                                 <div style="font-family: calibri;">
                                                                     Nama: {{ $menu->nama_menu }}<br>
                                                                     @if (isset($menu->stok) && $menu->stok->count() > 0 && $menu->stok->jumlah > 0)
@@ -278,8 +275,6 @@
                                     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                                     /* Meningkatkan bayangan saat hover */
                                 }
-
-
 
                                 .item-content {
                                     width: 400px;

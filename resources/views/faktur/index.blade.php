@@ -1,5 +1,5 @@
 <body>
-    <h2>C A F E</h2>
+    <h2>B A Y  C A F E</h2>
     <h5>Jl. Siliwangi N0. 61 Cianjur</h5>
     <hr>
     @if(isset($transaksi))

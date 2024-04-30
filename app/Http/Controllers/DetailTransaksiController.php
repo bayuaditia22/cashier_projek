@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailTransaksi;
+use App\Models\Transaksi;
 use App\Http\Requests\StoreDetailTransaksiRequest;
 use App\Http\Requests\UpdateDetailTransaksiRequest;
+use PDOException;
+use App\Imports\DetailTransaksiImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DetailTransaksi\Exports;
+use App\Exports\LaporanExport;
+use Illuminate\Http\Request;
+use PDF;
+
 
 class DetailTransaksiController extends Controller
 {
@@ -14,12 +22,21 @@ class DetailTransaksiController extends Controller
     public function index()
     {
             try{
-                $data['detail_transaksi'] = DetailTransaksi::get();
+                $data['transaksi'] = Transaksi::get();
                 return view('laporan.index')->with($data);
             }
             catch (QueryException | Exception | PDOException $error) {
                 $this->failResponse($error->getMessage(), $error->getCode());
             }
+    }
+
+    public function filter(Request $request)
+    {
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+
+        $laporan = Transaksi::whereBetween('tanggal', [$tgl_awal, $tgl_akhir])->get();
+
     }
 
     /**
@@ -69,4 +86,21 @@ class DetailTransaksiController extends Controller
     {
         //
     }
+
+    public function exportData(){
+        $date = date('Y-m-d');
+        return Excel::download(new LaporanExport, $date.'laporan.xlsx');
+    }
+
+    public function generatePDF()
+    {
+        // Data untuk ditampilkan dalam PDF
+        $data = Transaksi::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('laporan/laporan-pdf', ['transaksi'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-laporan.pdf');
+    }
+
 }

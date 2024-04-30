@@ -13,7 +13,7 @@
               <div id="method"></div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-4 col-form-label">Nama Menu</label>
-                <div class="col-sm-8">
+                <div class="col-sm-8"> 
                   <input type="text" class="form-control" id="nama_menu" value="" name="nama_menu">
                 </div>
               </div>
