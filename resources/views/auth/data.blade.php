@@ -1,6 +1,6 @@
 <div class="x_content">
     <div class="table-responsive">
-        <table class="table table-compact table stripped" id="tbl-category">
+        <table class="table table-compact table stripped" id="tbl-user">
             <thead>
                 <tr>
                     <th>No</th>

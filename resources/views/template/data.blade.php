@@ -1,47 +1,10 @@
 @extends('template/layout')
 
 @push('style')
-<!-- <style>
-    .tile_count {
-            margin-bottom: 20px;
-            /* Menambahkan margin bawah */
-        }
-
-        .tile_stats_count {
-            background-color: #f9f9f9;
-            /* Warna latar belakang */
-            border: 1px solid #ddd;
-            /* Warna border */
-            border-radius: 5px;
-            /* Sudut border */
-            padding: 15px;
-            /* Padding konten */
-        }
-
-        .tile_stats_count .count_top {
-            font-weight: bold;
-            /* Menambahkan ketebalan teks */
-        }
-
-        .tile_stats_count .count p {
-            margin: 5px 0;
-            /* Menambahkan margin atas dan bawah untuk setiap paragraf */
-        }
-
-        .tile_stats_count .count p:last-child {
-            margin-bottom: 0;
-            /* Menghapus margin bawah untuk paragraf terakhir */
-        }
-
-        .tile_stats_count .count p i {
-            margin-right: 5px;
-            /* Menambahkan margin kanan antara ikon dan teks */
-        }
-    </style> -->
 @endpush
 
 @section('content')
-    <section class="content">
+<section class="content">
         <div class="right_col" role="main">
             <!-- /top tiles -->
             <div class="row">
@@ -49,10 +12,7 @@
                     <div class="dashboard_graph">
                         <div class="row x_title">
                             <div class="col-md-6">
-                                <h3>
-                                    PROJECT UJIKOM
-                                    <h3>CHASIER GACORAN</h3>
-                                </h3>
+                                <h1 style=" font-family: 'Caveat', cursive;">BAY Caffe</h1>
                             </div>
                             <div class="col-md-6">
                                 <div id="reportrange" class="pull-right"
@@ -86,19 +46,28 @@
                                             <i class="fas fa-file-excel"></i> Import
                                         </button> -->
 
-                                        <form action="{{ url('/data') }}" method="GET" style="display: flex; align-items: center;">
-                                            <label for="tanggal_awal" style="margin-right: 5px;">Dari Tanggal:</label>
-                                                <input type="date" class="form-control" id="tanggal_awal"
-                                                    value="{{ $tanggal_awal ?? '' }}" name="tanggal_awal"
+                                        <form  style="display: flex; align-items: center;">
+                                            <label for="tanggal_mulai" style="margin-right: 5px;">Dari Tanggal:</label>
+                                                <input type="date" id="tanggal_mulai" name="tanggal_mulai"
                                                         style="width: 150px; margin-right: 10px;">
 
-                                            <label for="tanggal_akhir" style="margin-right: 5px;">Sampai Tanggal:</label>
-                                                <input type="date" class="form-control" id="tanggal_akhir"
-                                                    value="{{ $tanggal_akhir ?? '' }}" name="tanggal_akhir"
+                                            <label for="tanggal_selesai" style="margin-right: 5px;">Sampai Tanggal:</label>
+                                                <input type="date" id="tanggal_selesai" name="tanggal_selesai"
                                                     style="width: 150px; margin-right: 10px;">
 
-                                            <button type="submit" class="btn btn-primary">Filter</button>
                                         </form>
+
+                                        <!-- <div class="col-md-6">
+                                            <div class="tanggal m-2 ">
+
+                                                <label for="tanggal_mulai">Tanggal Mulai:</label>
+                                                <input type="date" id="tanggal_mulai" name="tanggal_mulai">
+
+                                                <label for="tanggal_selesai">Tanggal Selesai:</label>
+                                                <input type="date" id="tanggal_selesai" name="tanggal_selesai">
+
+                                            </div>
+                                        </div> -->
                                     </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -313,165 +282,57 @@
 @endsection
 
 @push('script')
-    <!-- <script>
-        $('#tbl-jenis').DataTable()
-        window.onload = function() {
-            var dataPenjualan = [];
-            var dataJmlTransaksi = [];
-
-            var chart;
-
-            $.get("{{ url('data_penjualan')}}/0", function(data) {
-            console.log(data)
-            $.each(data, function(key, value) {
-                let dat = value['tanggal'];
-                let year = dat.substring(0, 4);
-                let month = dat.substring(5, 7) - 1;
-                let day = dat.substring(8, 10);
-                // console.log(year+"-"+month+"-"+day);
-                dataPenjualan.push({
-                x: new Date(year, month, day),
-                y: parseInt(value['total_bayar'])
-                });
-
-                dataJmlTransaksi.push({
-                x: new Date(year, month, day),
-                y: parseInt(value['jumlah'])
-                });
-            });
-
-            chart = new CanvasJS.Chart("chart", {
-                title: {
-                text: "Grafik Pendapatan"
-                },
-                axisY: {
-                title: "Penjualan",
-                lineColor: "#C24642",
-                tickColor: "#C24642",
-                labelFontColor: "#C24642",
-                titleFontColor: "#C24642",
-                includeZero: true,
-                suffix: ""
-                },
-                axisY2: {
-                title: "Pendapatan",
-                lineColor: "#7F6084",
-                tickColor: "#7F6084",
-                labelFontColor: "#7F6084",
-                titleFontColor: "#7F6084",
-                includeZero: true,
-                prefix: "",
-                suffix: ""
-                },
-                toolTip: {
-                shared: true
-                },
-                legend: {
-                cursor: "pointer",
-                itemclick: toggleDataSeries
-                },
-                data: [{
-                    type: "line",
-                    name: "Penjualan",
-                    color: "#C24642",
-                    axisYIndex: 0,
-                    showInLegend: true,
-                    dataPoints: dataJmlTransaksi
-                },
-                {
-                    type: "line",
-                    name: "Pendapatan",
-                    color: "#7F6084",
-                    axisYType: "secondary",
-                    showInLegend: true,
-                    dataPoints: dataPenjualan
-                }
-                ]
-            });
-            chart.render();
-            updateChart();
-            });
-
-
-            function updateChart() {
-            $.get("{{ url('data_penjualan')}}/" + dataJmlTransaksi.length, function(data) {
-                console.log(data)
-                $.each(data, function(key, value) {
-                let date = value['tanggal'];
-                let year = date.substring(0, 4);
-                let month = date.substring(5, 7) - 1;
-                let day = date.substring(8, 10);
-                console.log(year + "-" + month + "-" + day);
-                dataPenjualan.push({
-                    x: new Date(year, month, day),
-                    y: parseInt(value['total_bayar'])
-                });
-
-                if (dataPenjualan.length == 1)
-                    dataJmlTransaksi.pop({
-                    x: new Date(year, month, day),
-                    y: parseInt(value['jumlah'])
-                    });
-                else
-                    dataJmlTransaksi.push({
-                    x: new Date(year, month, day),
-                    y: parseInt(value['jumlah'])
-                    });
-
-                });
-            });
-            chart.render();
-            setTimeout(function() {
-                updateChart()
-            }, 10000);
-            }
-
-            function toggleDataSeries(e) {
-            if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                e.dataSeries.visible = false;
-            } else {
-                e.dataSeries.visible = true;
-            }
-            e.chart.render();
-            }
-
-        }
-    </script> -->
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-        <script>
-            // Mendapatkan data pendapatan per tanggal dari PHP
-            var pendapatanPerTanggalData = {!! $pendapatan_per_tanggal !!};
-            // Memformat data untuk Chart.js
-            var labels = [];
-            var data = [];
-            pendapatanPerTanggalData.forEach(function(item) {
-                labels.push(item.tanggal);
-                data.push(item.total_pendapatan);
-            });
-
-            // Menggambar grafik pendapatan per tanggal
-            var ctx = document.getElementById('pendapatanPerTanggalChart').getContext('2d');
-            var pendapatanPerTanggalChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Pendapatan per Tanggal',
-                        data: data,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script>
+        var ctx = document.getElementById('pendapatanPerTanggalChart').getContext('2d');
+        var pendapatanPerTanggalChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode(array_keys($totalPendapatanPerHari)) !!},
+                datasets: [{
+                    label: 'Pendapatan Per Hari',
+                    data: {!! json_encode(array_values($totalPendapatanPerHari)) !!},
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgb(0, 123, 255)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
+                }
+            }
+        });
+
+        $('#tanggal_mulai, #tanggal_selesai').change(function() {
+            var tanggalMulai = $('#tanggal_mulai').val();
+            var tanggalSelesai = $('#tanggal_selesai').val();
+            $.ajax({
+                url: '/get-chart-data',
+                type: 'GET',
+                data: {
+                    tanggal_mulai: tanggalMulai,
+                    tanggal_selesai: tanggalSelesai
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
+                success: function(data) {
+                    pendapatanPerTanggalChart.data.labels = Object.keys(data);
+                    pendapatanPerTanggalChart.data.datasets[0].data = Object.values(data);
+                    pendapatanPerTanggalChart.update();
+
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
                 }
             });
-        </script>
+        });
+    </script>
 @endpush

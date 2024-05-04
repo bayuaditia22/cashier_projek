@@ -17,6 +17,7 @@ use App\http\Controllers\TitipanController;
 use App\http\Controllers\DetailTransaksiController;
 use Illuminate\Support\Facades\Route;
 
+
 //login
 Route::get('/login',[UserController::class, 'index']) ->name('login');
 Route::get('/create/akun',[UserController::class, 'index']) ->name('creat/akun');
@@ -29,7 +30,9 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/chart', [DataController::class, 'index'])->name('chart.index');
     Route::get('/sejarah', [HomeController::class, 'index1'])->name('sejarah');
     Route::get('/contact', [HomeController::class, 'index2'])->name('contact');
-
+    Route::get('/get-chart-data', [DataController::class, 'getDataChart']);
+    Route::get('/pendapatan-per-tanggal', [DataController::class])->name('data.index');
+    
     Route::group(['middleware'=>['cekUserLogin:1']], function(){
         Route::resource('/absensi', AbsensiController::class);
         Route::get('unduhabsensi', [AbsensiController::class, 'unduhExport'])->name('unduhabsensi');

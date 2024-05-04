@@ -87,8 +87,8 @@
                                         <li><a href="{{ url('/jenis') }}">Jenis</a></li>
                                         <li><a href="{{ url('/menu') }}">Menu</a></li>
                                         <li><a href="{{ url('/stok') }}">Stok</a></li>
-                                        <!-- <li><a href="{{ url('/meja') }}">Meja</a></li>
-                                        <li><a href="{{ url('/category') }}">Category</a></li> -->
+                                        <li><a href="{{ url('/meja') }}">Meja</a></li>
+                                        <li><a href="{{ url('/category') }}">Category</a></li>
                                         <!-- <li><a href="{{ url('/absensi') }}">Absensi</a></li> -->
                                     </ul>
                                 </li>

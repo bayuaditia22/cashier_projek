@@ -33,7 +33,7 @@
 </head>
 <body>
 
-<h1>Data Pemesanan</h1>
+<h1>Data Pelanggan</h1>
 <table id="customers">
     <tr>
         <th>No</th>
